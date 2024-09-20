@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1 style="text-align: center;">My Gallery</h1>
+<hr>
+
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+    {% if gallery | length == 0 %}
+        <p>You have nothing in your gallery. Upload some images to view it here.</p>
+    {% endif %}
+    {% for file_path, title, desc in gallery %} 
+        <div style="width: 30%; height: 30vh; text-align: center; margin: 2rem;">
+            <img style="max-width: 100%; max-height: 100%;" src="{{ url_for('static', filename='uploads/' + file_path) }}" />
+            <h5>{{ title }}</h5>
+            <p>{{ desc }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

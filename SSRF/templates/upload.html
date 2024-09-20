@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 style="text-align: center;">Upload image</h1>
+<hr>
+
+<form method="post" style="margin: auto; border: 1px solid black; width: 60vw; padding: 2rem;">
+    <label for="url">Enter url of image</label>
+    <br>
+    <input type="url" id="url" name="url" />
+    <br>
+    <label for="title">Enter title</label>
+    <br>
+    <input type="text" id="title" name="title" />
+    <br>
+    <label for="desc">Enter description</label>
+    <br>
+    <input type="text" id="desc" name="desc" />
+    <button style="float: right">Submit</button>
+    <br>
+</form>
+
+{% endblock %}
