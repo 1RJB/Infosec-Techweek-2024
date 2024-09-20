@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 80vw;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+form * {
+    width: 100%;
+}
