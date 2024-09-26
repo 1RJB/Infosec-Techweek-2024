@@ -13,11 +13,11 @@ Make sure you have the following installed on your system:
 
 - First, clone the project repository to your local machine:
 ``` shell
- git clone https://github.com/kaizez/directory-traversal
+ git clone 'this repo'
 ``` 
 
 ``` shell
- cd directory-traversal
+ cd Path-Traversal
 ```
 
 ### 2. Build Docker Image
