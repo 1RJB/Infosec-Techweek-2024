@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Login</h3>
+        <p class="card-text">
+            Log in with your administrative account
+            <form method="POST">
+                <div class="mb-3">
+                  <label for="staffid" class="form-label">Staff ID</label>
+                  <input type="text" class="form-control" id="staffid" name="staffid">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="text" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </p>
+    </div>
+</div>
+{% if response %}
+{% if response == "success" %}
+<div class="alert alert-success" role="alert">
+    Welcome {{ message[0] }}, you are logged in as {{ message[1] }}
+    {% if message[2] %}
+    <br>
+    Here is your flag: {{ message[2] }}
+    {% endif %}
+</div>
+{% else %}
+<div class="alert alert-danger" role="alert">
+    Invalid credentials
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}
