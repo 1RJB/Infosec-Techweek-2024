@@ -1,5 +1,6 @@
 # SSRF Vulnerability
 This is a web app with a vulnerability related to SSRF. There is 1 flag to find.
+app.py is the insecure version and secure_app.py is the more secure version.
 
 # How to run
 1. Make sure you have python installed and install requirements by running ```pip install -r requirements.txt```
