@@ -18,6 +18,9 @@
     <input type="text" id="desc" name="desc" />
     <button style="float: right">Submit</button>
     <br>
+    {% if invalid %}
+        <p>Invalid URL</p>
+    {% endif %}
 </form>
 
 {% endblock %}
