@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block body %}
+    <form id="form" method="post">
+        <label for="title">Enter Title</label>
+        <br>
+        <input type="text" id="title" name="title" required />
+        <br>
+        <label for="adduser">Add users</label>
+        <br>
+        <input type="text" id="adduser" />
+        <br>
+        <label for="admin">Admin role?</label>
+        <input type="checkbox" id="admin" />
+        <button id="addbtn">Add user</button>
+        <br>
+        <h4>Users</h4>
+        <ol id="userbox"></ol>
+        <button type="submit">Add workspace</button> 
+    </form>
+
+    <script>
+        const addbtn = document.getElementById("addbtn");
+        let users = [];
+        addbtn.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            let user = document.getElementById("adduser").value;
+            let admin = document.getElementById("admin").checked;
+            users.push([user, admin]);
+
+            let child = document.createElement("li");
+            child.innerText = user;
+            document.getElementById("userbox").appendChild(child);
+        });
+        const form = document.getElementById("form");
+        form.addEventListener("submit", async (ev) => {
+            ev.preventDefault();
+
+            data = {
+                "title": document.getElementById('title').value,
+                "users": []
+            };
+
+            for(let i=0; i<users.length; ++i) {
+                data["users"].push(users[i][0]);
+                if(users[i][1]) {
+                    await fetch(`/api/modify_role/${encodeURIComponent(users[i][0])}/admin`);
+                }
+            }
+
+            let res = await fetch("/create_workspace", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            res = await res.json();
+
+            if(res['success'] === 'false') {
+                alert(res['msg']);
+            }
+            else {
+                window.location.href = "/dashboard";
+            }
+        });
+    </script>
+{% endblock %}

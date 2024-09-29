@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block body %}
+    <h1>Login to your account</h1>
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button>Login</button>
+    </form>
+    {% if invalid %}
+        <p style="color: red;">Invalid Credentials</p>
+    {% endif %}
+{% endblock %}

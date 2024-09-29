@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block body %}
+    <h1>Welcome to the dashboard</h1>
+    {% if admin %}
+        <p>You are an admin</p>
+    {% endif %}
+
+    {% if superadmin %}
+        <p>Since you are superadmin, here's the flag. NYP{i_l0v3_MoB11E_gUarD13n}</p>
+    {% endif %}
+    <hr>
+    <h2>Workspaces</h2>
+    {% for workspace in workspaces %}
+    {% endfor %}
+    {% if workspaces | length == 0 %}
+        <p>You have no workspaces. Go add some.</p>
+    {% endif %}
+    {% for workspace in workspaces %}
+        <div>{{ workspace }}</div>
+    {% endfor %}
+{% endblock %}
