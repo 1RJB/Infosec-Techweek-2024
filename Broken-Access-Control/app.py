@@ -17,11 +17,6 @@ def get_roles(username, token):
 
 @app.route("/")
 def index():
-    username = request.cookies.get("username")
-    token = request.cookies.get("auth")
-    roles = get_roles(username, token)
-    if roles == None:
-        return redirect("/login")
     return render_template('index.html')
 
 @app.route("/dashboard")
@@ -85,7 +80,6 @@ def create_workspace():
 
 @app.route("/api/modify_role/<username>/<role>")
 def modify_role(username, role):
-    print(username)
     with open("users.json", "r") as f:
         users = json.load(f)
 
