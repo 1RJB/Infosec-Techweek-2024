@@ -46,9 +46,7 @@ def create_workspace():
         return redirect("/login")
 
     if request.method == "POST":
-        print("shuh", request.data)
         data = request.get_json()
-        print("ss", data)
         title = data['title']
         users = data['users']
         with open("workspaces.json", "r") as f:
