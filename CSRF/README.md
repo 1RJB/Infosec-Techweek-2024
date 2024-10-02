@@ -2,6 +2,8 @@
 This is a web app with a vulnerability related to CSRF. There is 1 flag to find.
 app.py is the insecure version and secure_app.py is the more secure version.
 malicious_app.py is a malicious web server which will send the csrf attack.
+secure_app.py is safer but is still vulnerable to XSS. 
+more_secure_app.py is safe from both CSRF and XSS.
 
 # How to run
 1. Make sure you have python installed and install requirements by running ```pip install -r requirements.txt```
