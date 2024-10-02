@@ -75,18 +75,41 @@
                 }
             }
             let container = document.getElementById("container");
-            container.innerHTML = `<p>Searching for ${search}:</p>`;
+            let temp = document.createElement("p");
+            temp.innerText = `Searching for ${search}:`;
+            container.innerHTML = ""; // remove everything first
+            container.appendChild(temp);
             if(index != -1) {
-                container.innerHTML += `\
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin: auto;">\
-                        <div style="width: 40%; display: flex; flex-direction: column; justify-content: center; align-items: center;">\
-                            <img src="/static/${languages[index][1]}") }}" style="max-width: 100%; max-height: 100%;" />\
-                            <h4>${languages[index][0]}</h4>\
-                        </div>
-                    </div>`;
+                let img = document.createElement("img");
+                img.src = `/static/${languages[index][1]}`;
+                img.style.maxWidth = "100%";
+                img.style.maxHeight = "100%";
+                let h4 = document.createElement("h4");
+                h4.innerText = languages[index][0];
+
+                let div1 = document.createElement("div");
+                div1.style.width = "40%";
+                div1.style.display = "flex";
+                div1.style.flexDirection = "column";
+                div1.style.justifyContent = "center";
+                div1.style.alignItems = "center";
+                div1.appendChild(img);
+                div1.appendChild(h4);
+
+                let div2 = document.createElement("div");
+                div2.style.display = "flex";
+                div2.style.justifyContent = "center";
+                div2.style.alignItems = "center";
+                div2.style.gap = "2rem";
+                div2.style.margin = "auto";
+                div2.appendChild(div1);
+
+                container.appendChild(div2);
             }
             else {
-                container.innerHTML += "<p>We found no results.</p>";
+                let temp = document.createElement("p");
+                temp.innerText = "We found no results."
+                container.appendChild(temp);
             }
         }
     </script>

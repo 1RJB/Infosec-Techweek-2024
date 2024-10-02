@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, make_response, redirect
 import secrets
 
@@ -43,7 +42,7 @@ def changepassword():
     token = request.cookies.get("token")
 
     if user not in users or token != users[user]['token']:
-        return 'You are not logged in'
+        return render_template('changepassword.html', invalid=True)
 
     if request.method == "POST":
         password = request.form.get("password")

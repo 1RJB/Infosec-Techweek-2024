@@ -1,9 +1,8 @@
+
 from flask import Flask, render_template, request, make_response, redirect
-from flask_cors import CORS
 import secrets
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
 
 # A "Database" containing the users
 users = {
@@ -18,8 +17,8 @@ def index():
     user = request.cookies.get("user")
     token = request.cookies.get("token")
     if user == "admin" and token == users['admin']['token']:
-        return render_template('index.html', admin=True)
-    return render_template('index.html')
+        return render_template('secure_index.html', admin=True)
+    return render_template('secure_index.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -31,8 +30,10 @@ def login():
             return render_template('login.html', invalid=True)
 
         res = make_response(redirect('/'))
-        res.set_cookie('user', username, samesite='None', secure=True)
-        res.set_cookie('token', users[username]['token'], samesite='None', secure=True)
+        res.set_cookie('user', username, samesite='Lax',
+                       httponly=True, secure=True)
+        res.set_cookie('token', users[username]['token'], 
+                       httponly=True, samesite='Lax', secure=True)
 
         return res
     
