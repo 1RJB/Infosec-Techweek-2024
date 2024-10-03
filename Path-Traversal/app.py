@@ -10,7 +10,7 @@ BIN_DIRECTORY = os.path.join(BASE_DIRECTORY, 'bin')  # Path to the bin directory
 
 @app.route('/')
 def index():
-    hint = "Current directory is /web_root/files "
+    hint = "Current directory is /web_root/ "
     
     # Get list of files from the files directory
     files = os.listdir(FILES_DIRECTORY)
